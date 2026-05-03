@@ -7,80 +7,98 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>💝 Create Your Love Page</h1>
 
-        <% if (error) { %>
-            <div class="alert error"><%= error %></div>
-        <% } %>
+<div class="container">
+    <h1>💝 Create Your Love Page</h1>
 
-        <% if (success) { %>
-            <div class="alert success"><%= success %></div>
-        <% } %>
+    <% if (error) { %>
+        <div class="alert error"><%= error %></div>
+    <% } %>
 
-        <form action="/create" method="POST" enctype="multipart/form-data">
+    <% if (success) { %>
+        <div class="alert success"><%= success %></div>
+    <% } %>
 
-            <!-- TITLE -->
-            <div class="form-group">
-                <label>Page Title *</label>
-                <input type="text" name="title" required placeholder="For My Love...">
-            </div>
+    <form action="/create" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
 
-            <!-- MESSAGE -->
-            <div class="form-group">
-                <label>Your Message *</label>
-                <textarea name="message" required placeholder="Write your heartfelt message..."></textarea>
-            </div>
+        <!-- TITLE -->
+        <div class="form-group">
+            <label>Page Title *</label>
+            <input type="text" name="title" placeholder="For My Love..." required>
+        </div>
 
-            <!-- SLUG -->
-            <div class="form-group">
-                <label>Custom URL *</label>
-                <input type="text" name="slug" required placeholder="my-love-2024">
-                <small>Your page: /p/<b>my-love-2024</b></small>
-            </div>
+        <!-- MESSAGE -->
+        <div class="form-group">
+            <label>Your Message *</label>
+            <textarea name="message" placeholder="Write your heartfelt message..." required></textarea>
+        </div>
 
-            <!-- IMAGE UPLOAD (IMPORTANT for multer) -->
-            <div class="form-group">
-                <label>Upload Image (Optional)</label>
-                <input type="file" name="image" accept="image/*">
-            </div>
+        <!-- SLUG -->
+        <div class="form-group">
+            <label>Custom URL *</label>
+            <input type="text" name="slug" placeholder="my-love-2024" required>
+            <small>Your page: /p/<b>my-love-2024</b></small>
+        </div>
 
-            <!-- MUSIC -->
-            <div class="form-group">
-                <label>Music URL</label>
-                <input type="url" name="music_url" placeholder="https://youtube.com/...">
-            </div>
+        <!-- IMAGE -->
+        <div class="form-group">
+            <label>Upload Image (Optional)</label>
+            <input type="file" name="image" accept="image/*">
+        </div>
 
-            <!-- THEME -->
-            <div class="form-group">
-                <label>Choose Theme</label>
-                <select name="theme">
-                    <option value="default">Romantic Pink</option>
-                    <option value="sunset">Sunset Orange</option>
-                    <option value="ocean">Ocean Blue</option>
-                    <option value="forest">Forest Green</option>
-                    <option value="midnight">Midnight Purple</option>
-                </select>
-            </div>
+        <!-- MUSIC -->
+        <div class="form-group">
+            <label>Music URL</label>
+            <input type="url" name="music_url" placeholder="https://youtube.com/...">
+        </div>
 
-            <button type="submit" class="btn-create">✨ Create Page</button>
-        </form>
-    </div>
+        <!-- THEME -->
+        <div class="form-group">
+            <label>Choose Theme</label>
+            <select name="theme">
+                <option value="default">Romantic Pink</option>
+                <option value="sunset">Sunset Orange</option>
+                <option value="ocean">Ocean Blue</option>
+                <option value="forest">Forest Green</option>
+                <option value="midnight">Midnight Purple</option>
+            </select>
+        </div>
 
-    <!-- AUTO SLUG GENERATOR -->
-    <script>
-        const titleInput = document.querySelector('input[name="title"]');
-        const slugInput = document.querySelector('input[name="slug"]');
+        <button type="submit" class="btn-create">✨ Create Page</button>
+    </form>
+</div>
 
-        titleInput.addEventListener('input', () => {
-            const slug = titleInput.value
-                .toLowerCase()
-                .trim()
-                .replace(/ /g, '-')
-                .replace(/[^\w-]+/g, '');
+<!-- SLUG AUTO GENERATOR -->
+<script>
+const titleInput = document.querySelector('input[name="title"]');
+const slugInput = document.querySelector('input[name="slug"]');
 
-            slugInput.value = slug;
-        });
-    </script>
+titleInput.addEventListener('input', () => {
+    const slug = titleInput.value
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)/g, '');
+
+    slugInput.value = slug;
+});
+</script>
+
+<!-- FRONTEND VALIDATION -->
+<script>
+function validateForm() {
+    const title = document.querySelector('input[name="title"]').value.trim();
+    const message = document.querySelector('textarea[name="message"]').value.trim();
+    const slug = document.querySelector('input[name="slug"]').value.trim();
+
+    if (!title || !message || !slug) {
+        alert("Please fill all required fields!");
+        return false;
+    }
+
+    return true;
+}
+</script>
+
 </body>
 </html>
