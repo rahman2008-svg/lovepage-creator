@@ -9,36 +9,49 @@
 <body>
     <div class="container">
         <h1>💝 Create Your Love Page</h1>
-        
+
         <% if (error) { %>
             <div class="alert error"><%= error %></div>
         <% } %>
-        
+
+        <% if (success) { %>
+            <div class="alert success"><%= success %></div>
+        <% } %>
+
         <form action="/create" method="POST" enctype="multipart/form-data">
+
+            <!-- TITLE -->
             <div class="form-group">
                 <label>Page Title *</label>
                 <input type="text" name="title" required placeholder="For My Love...">
             </div>
-            
+
+            <!-- MESSAGE -->
             <div class="form-group">
                 <label>Your Message *</label>
-                <textarea name="message" required 
-                    placeholder="Write your heartfelt message here..."></textarea>
+                <textarea name="message" required placeholder="Write your heartfelt message..."></textarea>
             </div>
-            
+
+            <!-- SLUG -->
             <div class="form-group">
                 <label>Custom URL *</label>
-                <input type="text" name="slug" required 
-                    placeholder="my-love-2024">
-                <small>Your page will be at: lovepage.onrender.com/p/<b>my-love-2024</b></small>
+                <input type="text" name="slug" required placeholder="my-love-2024">
+                <small>Your page: /p/<b>my-love-2024</b></small>
             </div>
-            
+
+            <!-- IMAGE UPLOAD (IMPORTANT for multer) -->
             <div class="form-group">
-                <label>Music URL (YouTube/SoundCloud)</label>
-                <input type="url" name="music_url" 
-                    placeholder="https://youtube.com/watch?v=...">
+                <label>Upload Image (Optional)</label>
+                <input type="file" name="image" accept="image/*">
             </div>
-            
+
+            <!-- MUSIC -->
+            <div class="form-group">
+                <label>Music URL</label>
+                <input type="url" name="music_url" placeholder="https://youtube.com/...">
+            </div>
+
+            <!-- THEME -->
             <div class="form-group">
                 <label>Choose Theme</label>
                 <select name="theme">
@@ -49,9 +62,25 @@
                     <option value="midnight">Midnight Purple</option>
                 </select>
             </div>
-            
+
             <button type="submit" class="btn-create">✨ Create Page</button>
         </form>
     </div>
+
+    <!-- AUTO SLUG GENERATOR -->
+    <script>
+        const titleInput = document.querySelector('input[name="title"]');
+        const slugInput = document.querySelector('input[name="slug"]');
+
+        titleInput.addEventListener('input', () => {
+            const slug = titleInput.value
+                .toLowerCase()
+                .trim()
+                .replace(/ /g, '-')
+                .replace(/[^\w-]+/g, '');
+
+            slugInput.value = slug;
+        });
+    </script>
 </body>
 </html>
