@@ -1,0 +1,143 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: border 0.3s;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+.btn-create {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.btn-create:hover {
+    transform: translateY(-2px);
+}
+
+.alert {
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.error {
+    background: #ffe0e0;
+    color: #cc0000;
+    border: 1px solid #ffcccc;
+}
+
+/* Page Display Styles */
+.page-container {
+    width: 100%;
+    max-width: 800px;
+}
+
+.content-card {
+    background: rgba(255,255,255,0.95);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    backdrop-filter: blur(10px);
+}
+
+.page-title {
+    font-size: 2.5em;
+    margin: 20px 0;
+}
+
+.page-message {
+    font-size: 1.2em;
+    line-height: 1.8;
+    margin: 30px 0;
+    color: #555;
+}
+
+.page-image {
+    max-width: 300px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.qr-section {
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.qr-code {
+    width: 200px;
+    height: 200px;
+    margin: 20px 0;
+}
+
+.music-player {
+    margin: 20px 0;
+}
+
+.music-player iframe {
+    width: 100%;
+    height: 80px;
+    border-radius: 10px;
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= page.title %></title>
+    <link rel="stylesheet" href="/css/themes/<%= page.theme %>.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="theme-<%= page.theme %>">
+    <div class="page-container">
+        <div class="content-card">
+            <% if (page.image_url) { %>
+                <img src="<%= page.image_url %>" class="page-image" alt="Love">
+            <% } %>
+            
+            <h1 class="page-title"><%= page.title %></h1>
+            
+            <div class="page-message">
+                <%= page.message.replace(/\n/g, '<br>') %>
+            </div>
+            
+            <% if (page.music_url) { %>
+                <div class="music-player">
+                    <iframe src="<%= page.music_url %>" frameborder="0"></iframe>
+                </div>
+            <% } %>
+            
+            <% if (qrCode) { %>
+                <div class="qr-section">
+                    <h3>Share this page</h3>
+                    <img src="<%= qrCode %>" alt="QR Code" class="qr-code">
+                    <p class="page-url"><%= pageUrl %></p>
+                </div>
+            <% } %>
+            
+            <div class="page-footer">
+                <p>❤️ Made with LovePage Creator</p>
+                <small>Views: <%= page.views %></small>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
